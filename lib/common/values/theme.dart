@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hj_app/common/utils/util.dart';
 
 import '../../config.dart';
 
@@ -40,7 +41,8 @@ class AppTheme {
   static ThemeData get theme {
     if (_theme == null || AppConfig.debug) {
       _theme = ThemeData(
-        primarySwatch: Colors.teal,
+        primaryColor: ColorsUtil.hexColor(0xDB3535),
+       // primarySwatch: Colors.green,
         brightness: Brightness.light,
         accentColor: Colors.blueGrey,
         accentColorBrightness: Brightness.dark,

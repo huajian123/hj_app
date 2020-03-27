@@ -6,6 +6,8 @@ import 'common/values/values.dart';
 import 'config.dart';
 import 'package:flutter/material.dart';
 
+import 'pages/pages.dart';
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: Application.router.generator,
           debugShowCheckedModeBanner: true,
           theme: AppTheme.theme,
-          home: Text("主页"),
+          home: Login(),
         ));
   }
 }
