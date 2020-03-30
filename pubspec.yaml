@@ -64,10 +64,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/logos/facebook.jpg
-    - assets/logos/google.jpg
     - assets/images/
-
   fonts:
     - family: OpenSans
       fonts:
