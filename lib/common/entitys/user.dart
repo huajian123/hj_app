@@ -1,49 +1,26 @@
-import 'package:flutter/foundation.dart';
+class UserEntity {
+  String _phone;
+  String _password;
 
-// 登录请求
-class UserLoginRequestEntity {
-  String email;
-  String password;
+  UserEntity({String phone, String password}) {
+    this._phone = phone;
+    this._password = password;
+  }
 
-  UserLoginRequestEntity({
-    @required this.email,
-    @required this.password,
-  });
+  String get phone => _phone;
+  set phone(String phone) => _phone = phone;
+  String get password => _password;
+  set password(String password) => _password = password;
 
-  factory UserLoginRequestEntity.fromJson(Map<String, dynamic> json) =>
-      UserLoginRequestEntity(
-        email: json["email"],
-        password: json["password"],
-      );
+  UserEntity.fromJson(Map<String, dynamic> json) {
+    _phone = json['phone'];
+    _password = json['password'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "email": email,
-        "password": password,
-      };
-}
-
-// 登录返回
-class UserLoginResponseEntity {
-  String accessToken;
-  String displayName;
-  List<String> channels;
-
-  UserLoginResponseEntity({
-    @required this.accessToken,
-    this.displayName,
-    this.channels,
-  });
-
-  factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) =>
-      UserLoginResponseEntity(
-        accessToken: json["access_token"],
-        displayName: json["display_name"],
-        channels: List<String>.from(json["channels"].map((x) => x)),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "access_token": accessToken,
-        "display_name": displayName,
-        "channels": List<dynamic>.from(channels.map((x) => x)),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['phone'] = this._phone;
+    data['password'] = this._password;
+    return data;
+  }
 }

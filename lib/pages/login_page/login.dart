@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hj_app/common/entitys/user.dart';
+import 'package:hj_app/common/utils/Iconfont.dart';
 import 'package:hj_app/common/utils/util.dart';
+import 'package:hj_app/common/values/values.dart';
 
 class Login extends StatelessWidget {
   final TextEditingController _userControl = new TextEditingController();
   final TextEditingController _pwdControl = new TextEditingController();
+  final _user = UserEntity();
+  final _phoneFocus = FocusNode();
+  final _passwordFocus = FocusNode();
+  var _isLoading = false;
 
   // logo头部
   Widget _buildLogo() {
@@ -29,7 +36,54 @@ class Login extends StatelessWidget {
   }
 
   Widget _buildLoginForm() {
-    return Text("输入框");
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: duSetWidth(60)),
+      child: Form(
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide:  BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
+                ),
+                prefixIcon: Icon(
+                  Icons.person_outline,
+                  color: Colors.white,
+                ),
+                hintText: "请输入手机号",
+                hintStyle: TextStyle(
+                  color: ColorsUtil.hexColor(0x999999),
+                ),
+              ),
+            ),
+            TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide:  BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide:
+                  BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
+                ),
+                prefixIcon: Icon(
+                  Icons.lock_outline,
+                  color: Colors.white,
+                ),
+                hintText: "请输入密码",
+                hintStyle: TextStyle(
+                  color: ColorsUtil.hexColor(0x999999),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
