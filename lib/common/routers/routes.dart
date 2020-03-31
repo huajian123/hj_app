@@ -7,7 +7,6 @@ class Routes {
 
   /*-----登录--------*/
   static String loginPage = "/login";
-  static String loginAPage = "/loginA";
   static String loginWithMessage= "/loginWithMessage";
 
   static String homePage = "/home";
@@ -22,7 +21,6 @@ class Routes {
     router.define(loginPage, handler: loginHander);
     router.define(loginWithMessage, handler: loginWithMessageHander);
 
-    // 配置路由
-    router.define(homePage, handler: homePageHander);
+
   }
 }

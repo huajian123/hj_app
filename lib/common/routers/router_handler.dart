@@ -6,7 +6,7 @@ import 'package:hj_app/pages/pages.dart';
 /*-------登录------*/
 Handler loginHander = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return Text("登录页");
+  return Login();
 });
 
 /// 用短信登录
@@ -15,7 +15,8 @@ Handler loginWithMessageHander = Handler(
       return LoginWithMessage();
     });
 
-Handler homePageHander = Handler(
+/// 账号密码登录
+Handler loginPageHander = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return Text("主页");
 });

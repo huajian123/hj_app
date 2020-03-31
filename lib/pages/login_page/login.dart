@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -242,7 +243,7 @@ class _LoginState extends State<Login> {
                 color: ColorsUtil.hexColor(0xcccccc),
               ),
             ),
-            onTap: () =>  Application.router.navigateTo(context, "/loginWithMessage"),
+            onTap: () =>  Application.router.navigateTo(context, "/loginWithMessage",transition: TransitionType.cupertino),
           ),
         ],
       ),
