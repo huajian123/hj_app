@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hj_app/common/entitys/entitys.dart';
+import 'package:hj_app/common/routers/application.dart';
 import 'package:hj_app/common/utils/Iconfont.dart';
 import 'package:hj_app/common/utils/util.dart';
 
@@ -22,19 +23,22 @@ class _LoginState extends State<Login> {
 
   // logo头部
   Widget _buildLogo() {
-    return Container(
-      width: double.infinity,
-      height: duSetHeight(140.0 + 144 + 150),
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-            duSetWidth(303), duSetWidth(150), duSetWidth(303), duSetWidth(140)),
-        child: Container(
-          width: duSetWidth(144),
-          height: duSetHeight(144),
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/logo.png"),
-                  fit: BoxFit.fill)),
+    return Hero(
+      tag: "logo",
+      child: Container(
+        width: double.infinity,
+        height: duSetHeight(140.0 + 144 + 150),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+              duSetWidth(303), duSetWidth(150), duSetWidth(303), duSetWidth(140)),
+          child: Container(
+            width: duSetWidth(144),
+            height: duSetHeight(144),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/images/logo.png"),
+                    fit: BoxFit.fill)),
+          ),
         ),
       ),
     );
@@ -57,6 +61,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  autofocus: false,
                   controller: _userControl,
                   onChanged: (value) {
                     print(_showCleanBtn);
@@ -116,6 +121,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  autofocus: false,
                   cursorColor: Colors.white,
                   // 改变光标颜色
                   cursorWidth: 1.0,
@@ -236,7 +242,7 @@ class _LoginState extends State<Login> {
                 color: ColorsUtil.hexColor(0xcccccc),
               ),
             ),
-            onTap: () => print("使用短信验证码登录"),
+            onTap: () =>  Application.router.navigateTo(context, "/loginWithMessage"),
           ),
         ],
       ),
