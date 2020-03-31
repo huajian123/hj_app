@@ -1,13 +1,15 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hj_app/common/entitys/user.dart';
+import 'package:flutter_screenutil/screenutil.dart';
+import 'package:hj_app/common/entitys/entitys.dart';
 import 'package:hj_app/common/utils/Iconfont.dart';
-import 'package:hj_app/common/utils/flutter_widget_repair.dart';
 import 'package:hj_app/common/utils/util.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final TextEditingController _userControl = new TextEditingController();
   final TextEditingController _pwdControl = new TextEditingController();
   final _user = UserEntity();
@@ -15,6 +17,7 @@ class Login extends StatelessWidget {
   final _passwordFocus = FocusNode();
   var _isLoading = false;
   var _showCleanBtn = false;
+  var _showPasswordFlag = false;
 
   // logo头部
   Widget _buildLogo() {
@@ -55,7 +58,12 @@ class Login extends StatelessWidget {
                 TextFormField(
                   controller: _userControl,
                   onChanged: (value) {
-                    value==""?_showCleanBtn=false:_showCleanBtn=true;
+                    print(_showCleanBtn);
+                    setState(() {
+                      value == ""
+                          ? _showCleanBtn = false
+                          : _showCleanBtn = true;
+                    });
                   },
                   cursorColor: Colors.white,
                   // 改变光标颜色
@@ -65,8 +73,10 @@ class Login extends StatelessWidget {
                   maxLength: 11,
                   maxLengthEnforced: true,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(
-                        left: duSetWidth(60.0), top: duSetHeight(24.0)),
+                    contentPadding: _showCleanBtn
+                        ? EdgeInsets.only(
+                            left: duSetWidth(60.0), top: duSetHeight(28.0))
+                        : EdgeInsets.only(left: duSetWidth(60.0)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
@@ -75,7 +85,17 @@ class Login extends StatelessWidget {
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
                     ),
-                    suffixIcon: Icon(Icons.clear),
+                    suffixIcon: _showCleanBtn
+                        ? IconButton(
+                            icon: Icon(Icons.clear, color: Colors.white),
+                            onPressed: () {
+                              setState(() {
+                                _userControl.clear();
+                                _showCleanBtn = false;
+                              });
+                            },
+                          )
+                        : null,
                     hintText: "请输入手机号",
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
@@ -99,7 +119,7 @@ class Login extends StatelessWidget {
                   // 改变光标颜色
                   cursorWidth: 1.0,
                   style: TextStyle(color: Colors.white),
-                  obscureText: true,
+                  obscureText: !_showPasswordFlag,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(
                         left: duSetWidth(60.0), top: duSetHeight(24.0)),
@@ -115,9 +135,27 @@ class Login extends StatelessWidget {
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
                     ),
-                    suffixIcon: Icon(
-                      Iconfont.eyeOff,
-                      color: Colors.white,
+                    suffixIcon: _showPasswordFlag
+                        ? IconButton(
+                            icon: Icon(
+                              Iconfont.openeyes,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _showPasswordFlag = false;
+                              });
+                            },
+                          ):IconButton(
+                      icon: Icon(
+                        Iconfont.eyeOff,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _showPasswordFlag = true;
+                        });
+                      },
                     ),
                   ),
                 ),

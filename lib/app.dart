@@ -1,4 +1,5 @@
 import 'package:fluro/fluro.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:hj_app/common/provide/provider.dart';
 import 'package:hj_app/common/routers/application.dart';
 import 'package:hj_app/common/routers/routes.dart';
@@ -16,7 +17,6 @@ class MyApp extends StatelessWidget {
     final router = Router();
     Routes.configureRoutes(router);
     Application.router = router;
-
     return Store.init(
         context: context,
         child: MaterialApp(
