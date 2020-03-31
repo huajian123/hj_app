@@ -8,6 +8,7 @@ class Routes {
   /*-----登录--------*/
   static String loginPage = "/login";
   static String loginWithMessage= "/loginWithMessage";
+  static String SMSVerificationCode= "/SMSVerificationCode";
 
   static String homePage = "/home";
   // 路由配置
@@ -20,6 +21,7 @@ class Routes {
     /*-----登录--------*/
     router.define(loginPage, handler: loginHander);
     router.define(loginWithMessage, handler: loginWithMessageHander);
+    router.define(SMSVerificationCode, handler: SMSVerificationCodeHander);
 
 
   }
