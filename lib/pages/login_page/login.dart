@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hj_app/common/entitys/entitys.dart';
 import 'package:hj_app/common/utils/Iconfont.dart';
 import 'package:hj_app/common/utils/util.dart';
@@ -118,6 +119,7 @@ class _LoginState extends State<Login> {
                   cursorColor: Colors.white,
                   // 改变光标颜色
                   cursorWidth: 1.0,
+                  controller: _pwdControl,
                   style: TextStyle(color: Colors.white),
                   obscureText: !_showPasswordFlag,
                   decoration: InputDecoration(
@@ -217,7 +219,10 @@ class _LoginState extends State<Login> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               onPressed: () {
-                print("登录");
+                if(_pwdControl.value.text==""||_userControl.value.text==""){
+                   toastInfo(msg: '请输入用户名或密码',postion: ToastGravity.CENTER,fontSize: duSetFontSize(24));
+                   return;
+                }
               },
             ),
           ),
