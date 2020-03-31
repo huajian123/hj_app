@@ -14,6 +14,7 @@ class Login extends StatelessWidget {
   final _phoneFocus = FocusNode();
   final _passwordFocus = FocusNode();
   var _isLoading = false;
+  var _showCleanBtn = false;
 
   // logo头部
   Widget _buildLogo() {
@@ -32,8 +33,6 @@ class Login extends StatelessWidget {
                   fit: BoxFit.fill)),
         ),
       ),
-
-      //child: Image.asset("assets/images/logo.png"),
     );
   }
 
@@ -54,12 +53,20 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
+                  controller: _userControl,
+                  onChanged: (value) {
+                    value==""?_showCleanBtn=false:_showCleanBtn=true;
+                  },
+                  cursorColor: Colors.white,
+                  // 改变光标颜色
+                  cursorWidth: 1.0,
                   style: TextStyle(color: Colors.white),
                   keyboardType: TextInputType.phone,
                   maxLength: 11,
                   maxLengthEnforced: true,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: duSetWidth(60.0)),
+                    contentPadding: EdgeInsets.only(
+                        left: duSetWidth(60.0), top: duSetHeight(24.0)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
@@ -68,6 +75,7 @@ class Login extends StatelessWidget {
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
                     ),
+                    suffixIcon: Icon(Icons.clear),
                     hintText: "请输入手机号",
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
@@ -87,6 +95,9 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
+                  cursorColor: Colors.white,
+                  // 改变光标颜色
+                  cursorWidth: 1.0,
                   style: TextStyle(color: Colors.white),
                   obscureText: true,
                   decoration: InputDecoration(
@@ -212,7 +223,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget _buildOtherWayBtn(){
+  Widget _buildOtherWayBtn() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: duSetWidth(135)),
       child: Row(
@@ -221,22 +232,37 @@ class Login extends StatelessWidget {
           Column(
             children: <Widget>[
               Image.asset("assets/images/zhifubao.png"),
-              SizedBox(height: duSetHeight(12),),
-              Text("支付宝",style: TextStyle(color: Colors.white),),
+              SizedBox(
+                height: duSetHeight(12),
+              ),
+              Text(
+                "支付宝",
+                style: TextStyle(color: Colors.white),
+              ),
             ],
           ),
           Column(
             children: <Widget>[
               Image.asset("assets/images/weixin.png"),
-              SizedBox(height: duSetHeight(12),),
-              Text("微信",style: TextStyle(color: Colors.white),),
+              SizedBox(
+                height: duSetHeight(12),
+              ),
+              Text(
+                "微信",
+                style: TextStyle(color: Colors.white),
+              ),
             ],
           ),
           Column(
             children: <Widget>[
               Image.asset("assets/images/qq.png"),
-              SizedBox(height: duSetHeight(12),),
-              Text("qq",style: TextStyle(color: Colors.white),),
+              SizedBox(
+                height: duSetHeight(12),
+              ),
+              Text(
+                "qq",
+                style: TextStyle(color: Colors.white),
+              ),
             ],
           ),
         ],
