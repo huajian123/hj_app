@@ -32,8 +32,10 @@ dependencies:
   #屏幕适配
   flutter_screenutil: ^1.0.2
 
+  #验证码
+  pin_input_text_field: 3.0.1
 
-  # toast请提示
+  # toast轻提示
   fluttertoast: ^3.1.3
 
   #http

@@ -122,7 +122,7 @@ class LoginWithMessage extends StatelessWidget {
                 color: ColorsUtil.hexColor(0xcccccc),
               ),
             ),
-            onTap: () => Application.router.navigateTo(context, "/login",transition: TransitionType.cupertino),
+            onTap: () => Application.router.navigateTo(context, "/login",clearStack: true,transition: TransitionType.cupertino),
           ),
         ],
       ),
