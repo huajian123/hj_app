@@ -30,8 +30,8 @@ class _LoginState extends State<Login> {
         width: double.infinity,
         height: duSetHeight(140.0 + 144 + 150),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(
-              duSetWidth(303), duSetWidth(150), duSetWidth(303), duSetWidth(140)),
+          padding: EdgeInsets.fromLTRB(duSetWidth(303), duSetWidth(150),
+              duSetWidth(303), duSetWidth(140)),
           child: Container(
             width: duSetWidth(144),
             height: duSetHeight(144),
@@ -82,7 +82,7 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     contentPadding: _showCleanBtn
                         ? EdgeInsets.only(
-                            left: duSetWidth(60.0), top: duSetHeight(28.0))
+                            left: duSetWidth(60.0), top: duSetHeight(0.0))
                         : EdgeInsets.only(left: duSetWidth(60.0)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
@@ -92,20 +92,25 @@ class _LoginState extends State<Login> {
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
                     ),
-                    suffixIcon: _showCleanBtn
-                        ? IconButton(
-                            icon: Icon(Icons.clear, color: Colors.white),
-                            onPressed: () {
-                              setState(() {
-                                _userControl.clear();
-                                _showCleanBtn = false;
-                              });
-                            },
-                          )
-                        : null,
                     hintText: "请输入手机号",
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: _showCleanBtn,
+                  child: Positioned(
+                    right: 0,
+                    top: duSetHeight(0.0),
+                    child: IconButton(
+                      icon: Icon(Icons.clear, color: Colors.white),
+                      onPressed: () {
+                        setState(() {
+                          _userControl.clear();
+                          _showCleanBtn = false;
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -131,7 +136,7 @@ class _LoginState extends State<Login> {
                   obscureText: !_showPasswordFlag,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(
-                        left: duSetWidth(60.0), top: duSetHeight(24.0)),
+                        left: duSetWidth(60.0), top: duSetHeight(0.0)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
@@ -144,29 +149,34 @@ class _LoginState extends State<Login> {
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
                     ),
-                    suffixIcon: _showPasswordFlag
-                        ? IconButton(
-                            icon: Icon(
-                              Iconfont.openeyes,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _showPasswordFlag = false;
-                              });
-                            },
-                          ):IconButton(
-                      icon: Icon(
-                        Iconfont.eyeOff,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _showPasswordFlag = true;
-                        });
-                      },
-                    ),
                   ),
+                ),
+                Positioned(
+                  right: 0,
+                  top: duSetHeight(0.0),
+                  child: _showPasswordFlag
+                      ? IconButton(
+                          icon: Icon(
+                            Iconfont.openeyes,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _showPasswordFlag = false;
+                            });
+                          },
+                        )
+                      : IconButton(
+                          icon: Icon(
+                            Iconfont.eyeOff,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _showPasswordFlag = true;
+                            });
+                          },
+                        ),
                 ),
               ],
             ),
@@ -226,9 +236,13 @@ class _LoginState extends State<Login> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               onPressed: () {
-                if(_pwdControl.value.text==""||_userControl.value.text==""){
-                   toastInfo(msg: '请输入用户名或密码',postion: ToastGravity.CENTER,fontSize: duSetFontSize(24));
-                   return;
+                if (_pwdControl.value.text == "" ||
+                    _userControl.value.text == "") {
+                  toastInfo(
+                      msg: '请输入用户名或密码',
+                      postion: ToastGravity.CENTER,
+                      fontSize: duSetFontSize(24));
+                  return;
                 }
               },
             ),
@@ -243,7 +257,9 @@ class _LoginState extends State<Login> {
                 color: ColorsUtil.hexColor(0xcccccc),
               ),
             ),
-            onTap: () =>  Application.router.navigateTo(context, "/loginWithMessage",transition: TransitionType.cupertino),
+            onTap: () => Application.router.navigateTo(
+                context, "/loginWithMessage",
+                transition: TransitionType.cupertino),
           ),
         ],
       ),
