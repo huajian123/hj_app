@@ -205,7 +205,9 @@ class _LoginState extends State<Login> {
                     color: ColorsUtil.hexColor(0xcccccc),
                   ),
                 ),
-                onTap: () => print("立即注册"),
+                onTap: () => Application.router.navigateTo(
+                    context, "/register",
+                    transition: TransitionType.cupertino),
               ),
               GestureDetector(
                 child: Text(

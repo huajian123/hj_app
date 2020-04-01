@@ -9,6 +9,7 @@ class Routes {
   static String loginPage = "/login";
   static String loginWithMessage= "/loginWithMessage";
   static String SMSVerificationCode= "/SMSVerificationCode";
+  static String register= "/register";
 
   static String homePage = "/home";
   // 路由配置
@@ -22,6 +23,7 @@ class Routes {
     router.define(loginPage, handler: loginHander);
     router.define(loginWithMessage, handler: loginWithMessageHander);
     router.define(SMSVerificationCode, handler: SMSVerificationCodeHander);
+    router.define(register, handler: registerHander);
 
 
   }
