@@ -12,6 +12,11 @@ class Routes {
   static String register= "/register";
 
   static String homePage = "/home";
+
+  /*-----数据分析--------*/
+  static String dataAnalysis= "/dataAnalysis";
+
+
   // 路由配置
   static void configureRoutes(Router router) {
     router.notFoundHandler = new Handler(
@@ -24,6 +29,9 @@ class Routes {
     router.define(loginWithMessage, handler: loginWithMessageHander);
     router.define(SMSVerificationCode, handler: SMSVerificationCodeHander);
     router.define(register, handler: registerHander);
+
+    /*-----数据分析--------*/
+    router.define(dataAnalysis, handler: dataAnalysisHander);
 
 
   }

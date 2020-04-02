@@ -3,7 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:hj_app/pages/login_page/SMS_verification_code.dart';
 import 'package:hj_app/pages/login_page/register.dart';
 import 'package:hj_app/pages/pages.dart';
-
+part 'data_analysis_handler.dart';
 /*-------登录------*/
 Handler loginHander = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {

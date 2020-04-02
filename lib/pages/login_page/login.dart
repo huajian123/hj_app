@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
                     ),
-                    hintText: "请输入手机号",
+                    hintText: "请输入123",
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
                     ),
@@ -145,7 +145,7 @@ class _LoginState extends State<Login> {
                       borderSide:
                           BorderSide(color: Color.fromRGBO(255, 255, 255, 0.3)),
                     ),
-                    hintText: "请输入密码",
+                    hintText: "请输入456",
                     hintStyle: TextStyle(
                       color: ColorsUtil.hexColor(0x999999),
                     ),
@@ -205,8 +205,7 @@ class _LoginState extends State<Login> {
                     color: ColorsUtil.hexColor(0xcccccc),
                   ),
                 ),
-                onTap: () => Application.router.navigateTo(
-                    context, "/register",
+                onTap: () => Application.router.navigateTo(context, "/register",
                     transition: TransitionType.cupertino),
               ),
               GestureDetector(
@@ -245,6 +244,12 @@ class _LoginState extends State<Login> {
                       postion: ToastGravity.CENTER,
                       fontSize: duSetFontSize(24));
                   return;
+                }
+
+                if (_pwdControl.value.text == "456" &&
+                    _userControl.value.text == "123") {
+                  Application.router.navigateTo(context, "/dataAnalysis",
+                      transition: TransitionType.cupertino);
                 }
               },
             ),
