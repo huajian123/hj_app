@@ -108,6 +108,7 @@ class LoginWithMessage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               onPressed: () {
+                FocusScope.of(context).requestFocus(FocusNode());
                 Application.router.navigateTo(context, "/SMSVerificationCode",transition: TransitionType.cupertino);
               },
             ),

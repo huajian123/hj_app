@@ -62,6 +62,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  focusNode: _phoneFocus,
                   autofocus: false,
                   controller: _userControl,
                   onChanged: (value) {
@@ -127,6 +128,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  focusNode: _passwordFocus,
                   autofocus: false,
                   cursorColor: Colors.white,
                   // 改变光标颜色
@@ -205,8 +207,11 @@ class _LoginState extends State<Login> {
                     color: ColorsUtil.hexColor(0xcccccc),
                   ),
                 ),
-                onTap: () => Application.router.navigateTo(context, "/register",
-                    transition: TransitionType.cupertino),
+                onTap: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  Application.router.navigateTo(context, "/register",
+                      transition: TransitionType.cupertino);
+                },
               ),
               GestureDetector(
                 child: Text(
@@ -264,9 +269,11 @@ class _LoginState extends State<Login> {
                 color: ColorsUtil.hexColor(0xcccccc),
               ),
             ),
-            onTap: () => Application.router.navigateTo(
-                context, "/loginWithMessage",
-                transition: TransitionType.cupertino),
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              Application.router.navigateTo(context, "/loginWithMessage",
+                  transition: TransitionType.cupertino);
+            },
           ),
         ],
       ),
