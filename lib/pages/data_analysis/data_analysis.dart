@@ -198,8 +198,8 @@ class DataAnalysis extends StatelessWidget {
         // 中心点坐标 (可选)
         centerCoordinate: LatLng(32.039458, 118.866218),
         zoomLevel: 19,
-        showCompass: true,
-   /*     // 地图类型 (可选)
+        showZoomControl: false,
+        /*     // 地图类型 (可选)
         mapType: MapType.Standard,
         // 是否显示缩放控件 (可选)
         showZoomControl: true,
@@ -235,8 +235,6 @@ class DataAnalysis extends StatelessWidget {
             await controller.showMyLocation(true);
           }
         },*/
-
-
       ),
     );
   }
@@ -248,14 +246,56 @@ class DataAnalysis extends StatelessWidget {
         centerTitle: true,
         title: Text("数据分析"),
       ),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          _buildTime(context),
-          _buildProduct(),
-          _buildTab(context),
-          Expanded(
-            flex: 1,
-            child: _buildMap(),
+          Column(
+            children: <Widget>[
+              _buildTime(context),
+              _buildProduct(),
+              _buildTab(context),
+              Expanded(
+                flex: 1,
+                child: _buildMap(),
+              ),
+              /* Stack(
+                children: <Widget>[
+                  Container(
+                    width: duSetWidth(710),
+                    height: duSetHeight(352),
+                    child: Card(
+                      child: Text("1234"),
+                    ),
+                  ),
+                ],
+              ),*/
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            left: duSetWidth(20),
+            child: Container(
+              width: duSetWidth(710),
+              height: duSetHeight(352),
+              child: Card(
+                margin: EdgeInsets.all(0),
+                child: Text("123"),
+                shape:RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(15.0),topLeft: Radius.circular(15.0)),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: duSetHeight(560),
+            left: duSetWidth(30),
+            child: Text(
+              "国内产能分布图",
+              style: TextStyle(
+                color: ColorsUtil.hexColor(0x222222),
+                fontSize: duSetFontSize(28),
+                fontWeight: FontWeight.bold
+              ),
+            ),
           ),
         ],
       ),
