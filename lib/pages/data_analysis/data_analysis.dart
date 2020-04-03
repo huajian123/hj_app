@@ -23,7 +23,8 @@ class DataAnalysis extends StatefulWidget {
   _DataAnalysisState createState() => _DataAnalysisState();
 }
 
-class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderStateMixin{
+class _DataAnalysisState extends State<DataAnalysis>
+    with SingleTickerProviderStateMixin {
   TabController _tabController; //需要定义一个Controller
   List tabs = ["新闻", "历史", "图片"];
 
@@ -31,9 +32,8 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
   void initState() {
     super.initState();
     // 创建Controller
-    _tabController = TabController(length:2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
-
 
   Widget _buildTime(context) {
     return Container(
@@ -93,7 +93,7 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
               fontSize: duSetFontSize(24)),
         ),
         SizedBox(
-          height: duSetHeight(12.0),
+          height: duSetHeight(5.0),
         ),
         Text(
           item.num.toString(),
@@ -102,7 +102,7 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
               fontSize: duSetFontSize(44)),
         ),
         SizedBox(
-          height: duSetHeight(12.0),
+          height: duSetHeight(5.0),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -139,9 +139,9 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          childAspectRatio: 1.5,
+          childAspectRatio: 1.8,
           mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
+          // crossAxisSpacing: 10,
         ),
         itemCount: projectList.length,
         itemBuilder: (context, index) {
@@ -164,7 +164,7 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
             border: Border(
               top: BorderSide(width: 1, color: ColorsUtil.hexColor(0xE6E6E6)),
               bottom:
-              BorderSide(width: 1, color: ColorsUtil.hexColor(0xE6E6E6)),
+                  BorderSide(width: 1, color: ColorsUtil.hexColor(0xE6E6E6)),
               left: BorderSide(width: 1, color: ColorsUtil.hexColor(0xE6E6E6)),
             ),
           ),
@@ -195,7 +195,7 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
 
   Widget _buildTab(context) {
     return Container(
-      height: duSetHeight(96),
+      height: duSetHeight(86),
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -269,27 +269,74 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
               indicatorColor: ColorsUtil.hexColor(0xDB3535),
               unselectedLabelColor: ColorsUtil.hexColor(0x222222),
               indicatorWeight: 2,
-              indicator: MyUnderlineTabIndicator(borderSide:  BorderSide(width: 2.0, color:ColorsUtil.hexColor(0xDB3535)),lineWidth: duSetWidth(120)),
-              indicatorSize: TabBarIndicatorSize.label, // 指示器的大小计算方式，以文本方式
+              indicator: MyUnderlineTabIndicator(
+                  borderSide: BorderSide(
+                      width: 2.0, color: ColorsUtil.hexColor(0xDB3535)),
+                  lineWidth: duSetWidth(120)),
+              indicatorSize: TabBarIndicatorSize.label,
+              // 指示器的大小计算方式，以文本方式
               isScrollable: true,
               //labelPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
               labelStyle: TextStyle(fontSize: duSetFontSize(30)),
               tabs: <Widget>[
                 Tab(text: '检修（600万吨）'),
                 Tab(text: '正常（21000万吨）'),
-
               ],
             ),
           ),
         ),
-     /*   TabBarView(
-          controller: _tabController,
-          children: <Widget>[
-            Text("1"),
-            Text("2"),
-          ],
-        ),*/
+        Expanded(
+          flex: 1,
+          child: Container(
+            child: TabBarView(
+              controller: _tabController,
+              children: <Widget>[
+                _buildCardItem(),
+                _buildCardItem(),
+              ],
+            ),
+          ),
+        ),
       ],
+    );
+  }
+
+  Widget _buildCardItem() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal:duSetWidth(30)),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Text("石家庄炼化",textAlign: TextAlign.center,),
+                ),
+                Expanded(flex:1,child: Text("20万吨",textAlign: TextAlign.center,)),
+                Expanded(flex: 1,child: Text("停车检修")),
+              ],
+            ),
+          ),
+          Divider(),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Text("徐州海天",textAlign: TextAlign.center,),
+                ),
+                Expanded(flex:1,child: Text("20万吨",textAlign: TextAlign.center,)),
+                Expanded(flex: 1,child: Text("3月3日故障临时停车，预计检修10天左右")),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -342,7 +389,7 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
             ),
           ),
           Positioned(
-            bottom: duSetHeight(560),
+            bottom: duSetHeight(600),
             left: duSetWidth(30),
             child: Text(
               "国内产能分布图",
@@ -356,5 +403,4 @@ class _DataAnalysisState extends State<DataAnalysis> with SingleTickerProviderSt
       ),
     );
   }
-
 }
