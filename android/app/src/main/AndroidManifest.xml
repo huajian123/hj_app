@@ -9,6 +9,11 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="小华APP"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="99e8144ca64a3a23a7f8b65085f3e843" />
+
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
