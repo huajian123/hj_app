@@ -15,7 +15,7 @@ class Routes {
 
   /*-----数据分析--------*/
   static String dataAnalysis= "/dataAnalysis";
-
+  static String pricePage = "/pricePage";
 
   // 路由配置
   static void configureRoutes(Router router) {
@@ -29,6 +29,7 @@ class Routes {
     router.define(loginWithMessage, handler: loginWithMessageHander);
     router.define(SMSVerificationCode, handler: SMSVerificationCodeHander);
     router.define(register, handler: registerHander);
+    router.define(pricePage, handler: pricePageHander);
 
     /*-----数据分析--------*/
     router.define(dataAnalysis, handler: dataAnalysisHander);

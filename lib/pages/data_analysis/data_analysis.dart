@@ -154,9 +154,8 @@ class _DataAnalysisState extends State<DataAnalysis>
       flex: 1,
       child: GestureDetector(
         onTap: () {
-          print(name);
-//        Application.router
-//            .navigateTo(context, path, transition: TransitionType.cupertino);
+        Application.router
+            .navigateTo(context, path, transition: TransitionType.cupertino);
         },
         child: Container(
           height: duSetHeight(96),
@@ -200,7 +199,7 @@ class _DataAnalysisState extends State<DataAnalysis>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _buildTabItem("价格模块", "aa", context),
+          _buildTabItem("价格模块", "pricePage", context),
           _buildTabItem("产能产量", "aa", context),
           _buildTabItem("产业链现金流", "aa", context),
         ],
