@@ -242,6 +242,10 @@ class _LoginState extends State<Login> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               onPressed: () {
+                Application.router.navigateTo(context, "/dataAnalysis",
+                    transition: TransitionType.cupertino);
+                return;
+
                 if (_pwdControl.value.text == "" ||
                     _userControl.value.text == "") {
                   toastInfo(
