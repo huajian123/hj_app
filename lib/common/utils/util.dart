@@ -9,3 +9,4 @@ export 'http.dart';
 export 'net_cache.dart';
 export 'color_util.dart';
 export 'flutter_widget_repair.dart';
+export 'my_tab_indicator.dart';

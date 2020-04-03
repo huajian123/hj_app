@@ -26,7 +26,7 @@ class DataAnalysis extends StatefulWidget {
 class _DataAnalysisState extends State<DataAnalysis>
     with SingleTickerProviderStateMixin {
   TabController _tabController; //需要定义一个Controller
-  List tabs = ["新闻", "历史", "图片"];
+  List tabs = ["检修（600万吨）", "正常（21000万吨）"];
 
   @override
   void initState() {
@@ -154,8 +154,8 @@ class _DataAnalysisState extends State<DataAnalysis>
       flex: 1,
       child: GestureDetector(
         onTap: () {
-        Application.router
-            .navigateTo(context, path, transition: TransitionType.cupertino);
+          Application.router
+              .navigateTo(context, path, transition: TransitionType.cupertino);
         },
         child: Container(
           height: duSetHeight(96),
@@ -263,25 +263,25 @@ class _DataAnalysisState extends State<DataAnalysis>
           height: duSetHeight(100),
           child: Center(
             child: TabBar(
-              controller: _tabController,
-              labelColor: ColorsUtil.hexColor(0xDB3535),
-              indicatorColor: ColorsUtil.hexColor(0xDB3535),
-              unselectedLabelColor: ColorsUtil.hexColor(0x222222),
-              indicatorWeight: 2,
-              indicator: MyUnderlineTabIndicator(
-                  borderSide: BorderSide(
-                      width: 2.0, color: ColorsUtil.hexColor(0xDB3535)),
-                  lineWidth: duSetWidth(120)),
-              indicatorSize: TabBarIndicatorSize.label,
-              // 指示器的大小计算方式，以文本方式
-              isScrollable: true,
-              //labelPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-              labelStyle: TextStyle(fontSize: duSetFontSize(30)),
-              tabs: <Widget>[
-                Tab(text: '检修（600万吨）'),
-                Tab(text: '正常（21000万吨）'),
-              ],
-            ),
+                controller: _tabController,
+                labelColor: ColorsUtil.hexColor(0xDB3535),
+                indicatorColor: ColorsUtil.hexColor(0xDB3535),
+                unselectedLabelColor: ColorsUtil.hexColor(0x222222),
+                indicatorWeight: 2,
+                indicator: MyUnderlineTabIndicator(
+                    borderSide: BorderSide(
+                        width: 2.0, color: ColorsUtil.hexColor(0xDB3535)),
+                    lineWidth: duSetWidth(120)),
+                indicatorSize: TabBarIndicatorSize.label,
+                // 指示器的大小计算方式，以文本方式
+                isScrollable: true,
+                //labelPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                labelStyle: TextStyle(fontSize: duSetFontSize(30)),
+                tabs: tabs.map((tabName) {
+                  return Tab(
+                    text: tabName,
+                  );
+                }).toList()),
           ),
         ),
         Expanded(
@@ -302,7 +302,7 @@ class _DataAnalysisState extends State<DataAnalysis>
 
   Widget _buildCardItem() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal:duSetWidth(30)),
+      padding: EdgeInsets.symmetric(horizontal: duSetWidth(30)),
       child: Column(
         children: <Widget>[
           Expanded(
@@ -312,10 +312,18 @@ class _DataAnalysisState extends State<DataAnalysis>
               children: <Widget>[
                 Expanded(
                   flex: 1,
-                  child: Text("石家庄炼化",textAlign: TextAlign.center,),
+                  child: Text(
+                    "石家庄炼化",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                Expanded(flex:1,child: Text("20万吨",textAlign: TextAlign.center,)),
-                Expanded(flex: 1,child: Text("停车检修")),
+                Expanded(
+                    flex: 1,
+                    child: Text(
+                      "20万吨",
+                      textAlign: TextAlign.center,
+                    )),
+                Expanded(flex: 1, child: Text("停车检修")),
               ],
             ),
           ),
@@ -327,10 +335,18 @@ class _DataAnalysisState extends State<DataAnalysis>
               children: <Widget>[
                 Expanded(
                   flex: 1,
-                  child: Text("徐州海天",textAlign: TextAlign.center,),
+                  child: Text(
+                    "徐州海天",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                Expanded(flex:1,child: Text("20万吨",textAlign: TextAlign.center,)),
-                Expanded(flex: 1,child: Text("3月3日故障临时停车，预计检修10天左右")),
+                Expanded(
+                    flex: 1,
+                    child: Text(
+                      "20万吨",
+                      textAlign: TextAlign.center,
+                    )),
+                Expanded(flex: 1, child: Text("3月3日故障临时停车，预计检修10天左右")),
               ],
             ),
           )
