@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:hj_app/common/utils/date.dart';
 import 'package:hj_app/common/utils/util.dart';
+import 'package:intl/intl.dart';
 
 class PricePage extends StatefulWidget {
   @override
@@ -17,6 +20,15 @@ class _PricePageState extends State<PricePage>
     {"label": "PP粒", "isChecked": false},
     {"label": "丙烷", "isChecked": false},
   ];
+  String _dropdownValue = "价格";
+  List<String> _dropdownValueList = ["种类", "价格", "名称"];
+
+  /*时间*/
+  DateTime firstDate = DateTime.now();
+
+  DateTime secondDate = DateTime.now();
+
+  /*时间*/
 
   @override
   void initState() {
@@ -137,6 +149,77 @@ class _PricePageState extends State<PricePage>
               },
             ),
           ),
+          Container(
+              padding: EdgeInsets.symmetric(horizontal: duSetWidth(30)),
+              child: Row(
+                children: <Widget>[
+                  DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: _dropdownValue,
+                      onChanged: (String newValue) {
+                        print(newValue);
+                        setState(() {
+                          _dropdownValue = newValue;
+                        });
+                      },
+                      items: _dropdownValueList.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Spacer(),
+                  FlatButton(
+                    onPressed: () {
+                      DatePicker.showDatePicker(context,
+                          showTitleActions: true,
+                          minTime: DateTime(2018, 3, 5),
+                          maxTime: DateTime(2080, 6, 7), onChanged: (date) {
+                        setState(() {
+                          firstDate = date;
+                        });
+                      }, onConfirm: (date) {
+                        print('confirm $date');
+                      }, currentTime: DateTime.now(), locale: LocaleType.zh);
+                    },
+                    child: Text(
+                      formateDate(firstDate),
+                      style: TextStyle(
+                        color: ColorsUtil.hexColor(0x222222),
+                      ),
+                    ),
+                  ),
+                  Text("至"),
+                  FlatButton(
+                    onPressed: () {
+                      DatePicker.showDatePicker(context,
+                          showTitleActions: true,
+                          minTime: DateTime(2018, 3, 5),
+                          maxTime: DateTime(2080, 6, 7), onChanged: (date) {
+                        setState(() {
+                          secondDate = date;
+                        });
+                      },
+                          onConfirm: (date) {},
+                          currentTime: DateTime.now(),
+                          locale: LocaleType.zh);
+                    },
+                    child: Text(
+                      formateDate(secondDate),
+                      style: TextStyle(
+                        color: ColorsUtil.hexColor(0x222222),
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  )
+                ],
+              )),
         ],
       ),
     );
