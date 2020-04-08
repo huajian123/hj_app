@@ -242,6 +242,10 @@ class _LoginState extends State<Login> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               onPressed: () {
+                // 收起键盘,表单失去焦点
+                _phoneFocus.unfocus();
+                _passwordFocus.unfocus();
+                FocusScope.of(context).requestFocus(FocusNode());
                 Application.router.navigateTo(context, "/dataAnalysis",
                     transition: TransitionType.cupertino);
                 return;
@@ -375,36 +379,45 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 750, height: 1294, allowFontScaling: true);
-    return WillPopScope(
-      onWillPop: () {
-        ///如果返回 return new Future.value(false); popped 就不会被处理
-        ///如果返回 return new Future.value(true); popped 就会触发
-        ///这里可以通过 showDialog 弹出确定框，在返回时通过 Navigator.of(context).pop(true);决定是否退出
-        return _dialogExitApp(context);
+    // 触摸到别的地方收回键盘
+    return GestureDetector(
+      ///透明也响应处理
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        ///触摸手气键盘
+        FocusScope.of(context).requestFocus(new FocusNode());
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/login_bg.png"),
-              fit: BoxFit.cover,
+      child: WillPopScope(
+        onWillPop: () {
+          ///如果返回 return new Future.value(false); popped 就不会被处理
+          ///如果返回 return new Future.value(true); popped 就会触发
+          ///这里可以通过 showDialog 弹出确定框，在返回时通过 Navigator.of(context).pop(true);决定是否退出
+          return _dialogExitApp(context);
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/login_bg.png"),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Column(
-            children: <Widget>[
-              _buildLogo(),
-              _buildLoginForm(),
-              _buildBtns(context),
-              SizedBox(
-                height: duSetHeight(119),
-              ),
-              _buildOtherWayTitle(),
-              SizedBox(
-                height: duSetHeight(50),
-              ),
-              _buildOtherWayBtn(),
-            ],
+            child: Column(
+              children: <Widget>[
+                _buildLogo(),
+                _buildLoginForm(),
+                _buildBtns(context),
+                SizedBox(
+                  height: duSetHeight(119),
+                ),
+                _buildOtherWayTitle(),
+                SizedBox(
+                  height: duSetHeight(50),
+                ),
+                _buildOtherWayBtn(),
+              ],
+            ),
           ),
         ),
       ),
