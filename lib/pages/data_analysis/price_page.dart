@@ -3,13 +3,14 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:hj_app/common/utils/date.dart';
 import 'package:hj_app/common/utils/util.dart';
-import 'package:intl/intl.dart';
 
 class PricePage extends StatefulWidget {
   @override
   _PricePageState createState() => _PricePageState();
 }
 
+
+// 混入的AutomaticKeepAliveClientMixin用来保持状态
 class _PricePageState extends State<PricePage>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   @override
