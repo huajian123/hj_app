@@ -25,3 +25,8 @@ String duTimeLineFormat(DateTime dt) {
     return str;
   }
 }
+String formateDate(DateTime dt){
+  final dtFormat = new DateFormat('yyyy-MM-dd');
+  var str = dtFormat.format(dt);
+  return str;
+}

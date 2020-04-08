@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:hj_app/common/utils/date.dart';
 import 'package:hj_app/common/utils/util.dart';
 import 'package:intl/intl.dart';
@@ -150,7 +151,16 @@ class _PricePageState extends State<PricePage>
             ),
           ),
           Container(
-              padding: EdgeInsets.symmetric(horizontal: duSetWidth(30)),
+              padding: EdgeInsets.symmetric(
+                horizontal: duSetWidth(30),
+              ),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: ColorsUtil.hexColor(0xcccccc),
+                  ),
+                ),
+              ),
               child: Row(
                 children: <Widget>[
                   DropdownButtonHideUnderline(
@@ -182,7 +192,9 @@ class _PricePageState extends State<PricePage>
                         });
                       }, onConfirm: (date) {
                         print('confirm $date');
-                      }, currentTime: DateTime.now(), locale: LocaleType.zh);
+                      },
+                          currentTime: DateTime.now(),
+                          locale: LocaleType.zh);
                     },
                     child: Text(
                       formateDate(firstDate),
@@ -220,6 +232,30 @@ class _PricePageState extends State<PricePage>
                   )
                 ],
               )),
+          SizedBox(
+            height: duSetHeight(20),
+          ),
+          Container(
+            child: Echarts(
+              option: '''
+    {
+      xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+      }]
+    }
+  ''',
+            ),
+            width: double.infinity,
+            height: duSetHeight(390),
+          ),
         ],
       ),
     );
