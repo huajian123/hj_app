@@ -246,7 +246,7 @@ class _LoginState extends State<Login> {
                 _phoneFocus.unfocus();
                 _passwordFocus.unfocus();
                 FocusScope.of(context).requestFocus(FocusNode());
-                Application.router.navigateTo(context, "/dataAnalysis",
+                Application.router.navigateTo(context, "/home",
                     transition: TransitionType.cupertino);
                 return;
 

@@ -11,6 +11,8 @@ class Routes {
   static String SMSVerificationCode= "/SMSVerificationCode";
   static String register= "/register";
 
+
+  /*-----home--------*/
   static String homePage = "/home";
 
   /*-----数据分析--------*/
@@ -30,6 +32,12 @@ class Routes {
     router.define(SMSVerificationCode, handler: SMSVerificationCodeHander);
     router.define(register, handler: registerHander);
     router.define(pricePage, handler: pricePageHander);
+
+
+
+    /*-----home--------*/
+    router.define(homePage, handler: homeHander);
+
 
     /*-----数据分析--------*/
     router.define(dataAnalysis, handler: dataAnalysisHander);

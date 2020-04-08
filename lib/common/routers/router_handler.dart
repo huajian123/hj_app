@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
+import 'package:hj_app/pages/home/home_page.dart';
 import 'package:hj_app/pages/login_page/SMS_verification_code.dart';
 import 'package:hj_app/pages/login_page/register.dart';
 import 'package:hj_app/pages/pages.dart';
 part 'data_analysis_handler.dart';
+part 'home_handler.dart';
 /*-------登录------*/
 Handler loginHander = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {

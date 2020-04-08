@@ -360,6 +360,7 @@ class _DataAnalysisState extends State<DataAnalysis>
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text("数据分析"),
       ),
       body: Stack(
