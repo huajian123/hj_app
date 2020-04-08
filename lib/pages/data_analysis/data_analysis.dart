@@ -200,8 +200,8 @@ class _DataAnalysisState extends State<DataAnalysis>
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _buildTabItem("价格模块", "pricePage", context),
-          _buildTabItem("产能产量", "aa", context),
-          _buildTabItem("产业链现金流", "aa", context),
+          _buildTabItem("产能产量", "pricePage", context),
+          _buildTabItem("产业链现金流", "pricePage", context),
         ],
       ),
     );
