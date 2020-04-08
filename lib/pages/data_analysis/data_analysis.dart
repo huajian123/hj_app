@@ -260,7 +260,7 @@ class _DataAnalysisState extends State<DataAnalysis>
       children: <Widget>[
         Container(
           width: double.infinity,
-          height: duSetHeight(100),
+          height: duSetHeight(75),
           child: Center(
             child: TabBar(
                 controller: _tabController,
@@ -392,7 +392,7 @@ class _DataAnalysisState extends State<DataAnalysis>
             left: duSetWidth(20),
             child: Container(
               width: duSetWidth(710),
-              height: duSetHeight(352),
+              height: duSetHeight(325),
               child: Card(
                 margin: EdgeInsets.all(0),
                 child: _buildCardTab(),
@@ -405,7 +405,7 @@ class _DataAnalysisState extends State<DataAnalysis>
             ),
           ),
           Positioned(
-            bottom: duSetHeight(600),
+            bottom: duSetHeight(500),
             left: duSetWidth(30),
             child: Text(
               "国内产能分布图",
