@@ -11,7 +11,10 @@ class PricePage extends StatefulWidget {
 }
 
 class _PricePageState extends State<PricePage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   TabController _tabController;
   List<Map<String, dynamic>> _chipList = [
     {"label": "汇率", "isChecked": false},
@@ -88,8 +91,8 @@ class _PricePageState extends State<PricePage>
               controller: _tabController,
               children: <Widget>[
                 _buildPriceData(context),
-                _buildPriceData(context),
-                _buildPriceData(context),
+                Text("期货数据"),
+                Text("价差指标"),
               ],
             ),
           ),
@@ -186,15 +189,12 @@ class _PricePageState extends State<PricePage>
                       DatePicker.showDatePicker(context,
                           showTitleActions: true,
                           minTime: DateTime(2018, 3, 5),
-                          maxTime: DateTime(2080, 6, 7), onChanged: (date) {
+                          maxTime: DateTime(2080, 6, 7),
+                          onChanged: (date) {}, onConfirm: (date) {
                         setState(() {
                           firstDate = date;
                         });
-                      }, onConfirm: (date) {
-                        print('confirm $date');
-                      },
-                          currentTime: DateTime.now(),
-                          locale: LocaleType.zh);
+                      }, currentTime: DateTime.now(), locale: LocaleType.zh);
                     },
                     child: Text(
                       formateDate(firstDate),
@@ -209,14 +209,12 @@ class _PricePageState extends State<PricePage>
                       DatePicker.showDatePicker(context,
                           showTitleActions: true,
                           minTime: DateTime(2018, 3, 5),
-                          maxTime: DateTime(2080, 6, 7), onChanged: (date) {
+                          maxTime: DateTime(2080, 6, 7),
+                          onChanged: (date) {}, onConfirm: (date) {
                         setState(() {
                           secondDate = date;
                         });
-                      },
-                          onConfirm: (date) {},
-                          currentTime: DateTime.now(),
-                          locale: LocaleType.zh);
+                      }, currentTime: DateTime.now(), locale: LocaleType.zh);
                     },
                     child: Text(
                       formateDate(secondDate),
